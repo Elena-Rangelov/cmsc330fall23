@@ -67,14 +67,57 @@ impl Pokemon for PokemonCharacter {
 
         println!("{} took {} damage!", enemy.name, damage_taken);
     }
+}
 
-    fn summary(&mut self) {
-        println("[{}]: {}/{} HP, Level {}", self.name, self.hp, self.max_hp, self.level);
+impl Summary for PokemonCharacter {
+    fn summary(&self) -> String {
+        format!(
+            "[{}]: {}/{} HP, Level {}", 
+            self.name, self.hp, self.max_hp, self.level
+        )
     }
 }
 
-// TODO: create & implement Summary trait for PokemonCharacter
-
 fn main() {
-    // TODO: instantiate pokemon, call summary(), use battle functions
+
+    let mut charmander = PokemonCharacter {
+        name: String::from("Charmander"),
+        level: 6,
+        hp: 60, 
+        pokemon_type: PokemonType::Fire,
+        moves: vec![
+            PokemonMove {
+                
+    
+    let mut s_moves = Vec::new();
+    s_moves.push(PokemonMove(Tackle, Normal, 10));
+    s_moves.push(PokemonMove(Water Gun, Water, 15));
+    let mut squirtle = PokemonCharacter(Squirtle, 5, 50, 50, Water, s_moves);
+
+    let mut c_moves = Vec::new();
+    c_moves.push(PokemonMove(Scratch, Normal, 10));
+    c_moves.push(PokemonMove(Ember, Fire, 15));
+    let mut charmander = PokemonCharacter(Charmander, 6, 60, 60, Fire, c_moves);
+    
+    println!("{}", charmander.summary());
+    println!("{}", squirtle.summary());
+    println!();
+    
+    charmander.attack(&mut squirtle);
+    squirtle.attack(&mut charmander);
+    println!();
+    
+    println!("{}", charmander.summary());
+    println!("{}", squirtle.summary());
+    println!();
+    
+    println!("Leveling up Squirtle, healing charmander...");
+    println!();
+    
+    squirtle.level_up();
+    charmander.heal();
+    
+    println!("{}", charmander.summary());
+    println!("{}", squirtle.summary());
+    println!();
 }
