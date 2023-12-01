@@ -67,6 +67,10 @@ impl Pokemon for PokemonCharacter {
 
         println!("{} took {} damage!", enemy.name, damage_taken);
     }
+
+    fn summary(&mut self) {
+        println("[{}]: {}/{} HP, Level {}", self.name, self.hp, self.max_hp, self.level);
+    }
 }
 
 // TODO: create & implement Summary trait for PokemonCharacter
